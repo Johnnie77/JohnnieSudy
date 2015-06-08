@@ -51,6 +51,13 @@ class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.anyRequest().authenticated() // 7
 				.and()
 			.formLogin()  // #8
-				.permitAll(); // #5
+				.loginPage("/login")
+				.permitAll() // #5
+				.and()
+				.logout()
+		                    .deleteCookies("remove")
+		                    .invalidateHttpSession(false)
+		                    .logoutUrl("/logout")
+		                    .logoutSuccessUrl("/login");
 	}
 }

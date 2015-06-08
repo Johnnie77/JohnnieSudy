@@ -15,6 +15,16 @@ class HelloController {
 		return "home"
 	}
 
+	@RequestMapping("/login")
+	public def login(Model model) {
+		return "login"
+	}
+
+	@RequestMapping("/logout")
+	public def logout(Model model) {
+		return "login"
+	}
+
 	@RequestMapping("/hello")
 	public def hello(Model model) {
 		model.addAttribute("message", "Hello Johnnie")

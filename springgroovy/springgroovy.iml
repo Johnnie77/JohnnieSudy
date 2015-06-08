@@ -82,5 +82,6 @@
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.apache.tomcat.embed:tomcat-embed-el:8.0.23" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.apache.tomcat.embed:tomcat-embed-jasper:8.0.23" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.eclipse.jdt.core.compiler:ecj:4.4.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: javax.servlet:jstl:1.2" level="project" />
   </component>
 </module>
