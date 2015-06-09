@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.core.Authentication
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 
 import javax.sql.DataSource
 
@@ -48,16 +49,19 @@ class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 			.authorizeRequests()
 				.antMatchers("/signup","/about").permitAll() // #4
 				.antMatchers("/admin/**").hasRole("ADMIN") // #6
-				.anyRequest().authenticated() // 7
-				.and()
-			.formLogin()  // #8
+				.anyRequest().authenticated()
+
+		http.formLogin()  // #8
 				.loginPage("/login")
 				.permitAll() // #5
-				.and()
-				.logout()
-		                    .deleteCookies("remove")
-		                    .invalidateHttpSession(false)
-		                    .logoutUrl("/logout")
-		                    .logoutSuccessUrl("/login");
+
+		http.logout()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.logoutSuccessUrl("/login")
+				.permitAll()
+//		                    .deleteCookies("remove")
+//		                    .invalidateHttpSession(false)
+//		                    .logoutUrl("/logout")
+//		                    .logoutSuccessUrl("/login");
 	}
 }

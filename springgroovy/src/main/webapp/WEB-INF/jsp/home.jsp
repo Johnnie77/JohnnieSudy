@@ -34,7 +34,7 @@
         <li class="active"><a href="#">Home</a></li>
       </ul>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="<spring:url value="/logout.do"/>">Logout</a></li>
+        <li class="active"><a href="<spring:url value="/logout"/>">Logout</a></li>
       </ul>
     </div>
     <!--/.nav-collapse -->

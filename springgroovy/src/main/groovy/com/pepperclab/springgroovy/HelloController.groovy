@@ -20,10 +20,10 @@ class HelloController {
 		return "login"
 	}
 
-	@RequestMapping("/logout")
-	public def logout(Model model) {
-		return "login"
-	}
+//	@RequestMapping("/logout")
+//	public def logout(Model model) {
+//		return "login"
+//	}
 
 	@RequestMapping("/hello")
 	public def hello(Model model) {
