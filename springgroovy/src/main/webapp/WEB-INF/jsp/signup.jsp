@@ -16,7 +16,7 @@
 <body>
 <div>
   <p>This is Login Page.</p>
-  <form:form name="f" action="/signup/createUser" method="post">
+  <form:form name="f" action="/user/signup" method="post">
     <fieldset>
       <legend>Please Login</legend>
       <c:if test="${param.error}">

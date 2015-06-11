@@ -1,9 +1,12 @@
-package com.pepperclab.springgroovy.user
+package com.pepperclab.springgroovy.auth
 
+import com.pepperclab.springgroovy.user.UserRepository
+import com.pepperclab.springgroovy.user.UserRole
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
@@ -25,27 +28,27 @@ public class UserService implements UserDetailsService {
 	public UserDetails loadUserByUsername(final String username)
 			throws UsernameNotFoundException {
 
-		User user = userRepository.findByUsername(username);
+		com.pepperclab.springgroovy.user.User user = userRepository.findByUsername(username);
 		List<GrantedAuthority> authorities = buildUserAuthority(user.getRoles());
 
 		return buildUserForAuthentication(user, authorities);
 
 	}
 
-	private User buildUserForAuthentication(User user,
+	private User buildUserForAuthentication(com.pepperclab.springgroovy.user.User user,
 											List<GrantedAuthority> authorities) {
 		return new User(user.getUsername(), user.getPassword(), authorities);
 	}
 
-	private List<GrantedAuthority> buildUserAuthority(Set<UserRole> userRoles) {
+	private List<GrantedAuthority> buildUserAuthority(List<UserRole> userRoles) {
 
-		Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
+		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
 		// Build user's authorities
 		for (UserRole userRole : userRoles) {
-			setAuths.add(new SimpleGrantedAuthority(userRole.getRoleName()));
+			authorities.add(new SimpleGrantedAuthority(userRole.getRoleName()));
 		}
 
-		return new ArrayList<GrantedAuthority>(setAuths);
+		return authorities;
 	}
 }
