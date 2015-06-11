@@ -16,7 +16,7 @@
 <body>
 <div>
   <p>This is Login Page.</p>
-  <form:form name="f" action="login" method="post">
+  <form:form name="f" action="/signup/createUser" method="post">
     <fieldset>
       <legend>Please Login</legend>
       <c:if test="${param.error}">
@@ -36,7 +36,7 @@
       <input type="password" id="password" name="password"/>
       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
       <div class="form-actions">
-        <button type="submit" class="btn">Log in</button>
+        <button type="submit" class="btn">Signup</button>
       </div>
     </fieldset>
   </form:form>
